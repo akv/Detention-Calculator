@@ -1,37 +1,18 @@
 Installation
 ------------
-1.  Clone or download the repo
+1.  Clone or download the repo provided with the Github Repo
 
-2.  Set up the correct database login information in config.php
-
+2.  Set up the correct database login information in config.php file 
+3. Create a DAtAbase as and run the SQL mentioned in DB.config file 
 Usage
 -----
 1.  Setting up the controller
-
-    ```php
-    <?php
-
-	class Home extends Controller
-	{
-		public function __construct()
-		{
-			parent::__construct();
-		}
-		
-		public function index()
-		{
-			//default method
-		}	
-
-    ```
-	
+  Create controller in controller Folder
 2.  Loading view file in the controller
-
-    ```php
     	$this->load->viewFile("home");			
-    	$this->load->viewFile("home", $data);	//padding an array of data to the view file
-    ```
-	
+     ```php
+        $this->load->viewFile("home");	
+    ```	
 3.  Setting up the Model
 
     ```php
@@ -42,30 +23,16 @@ Usage
 		public function __construct()
 		{
 			parent::__construct();
-			$this->load_database();	//load database
+			
 		}
     ```
 	
-4.  Loading Model file in the controller
+
+4.  Loading Query in the Model
 
     ```php
     <?php
-	
-	//Load in the controller constructor function
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model("home_model");
-	}
-    ```
-
-5.  Loading Query in the Model
-
-    ```php
-    <?php
-	
-	//model file
-	//example of how to query database and retrieve the results
+	Example showing how to create model and execute the query.
 	public function get_query_result()
 	{
 		$sql = "select * from test_db";
@@ -74,69 +41,12 @@ Usage
 		//Complete array result
 		$result = $query->result_array();
 		
-		//result of first row
-		$firsts_row = $query->first_row();
 	
 	}
     ```
-
-
-6.  Call model function from the controller and load the data to view
-
-    ```php
-    <?php
 	
-	public function index()
-	{
-		$data['result']  = $this->home_model->get_query_result();
-		$data['title'] = "Home"; 
-		$this->load->viewFile("home", $data);
-	}
-    ```
-    
-7.  Set up custom Session class
-	```php
-	<?php
-
-	class Example_auth extends Session
-	{
-		public function __construct()
-		{
-			parent::__construct();
-		}
-	
-		public function test_authenticate()
-		{
-			return true;
-		}
-	
-	}
-	```
-	 
-7.  Load Session class and call validate function
-	```php
-	class Home extends Controller
-	{
-		public function __construct()
-		{
-			parent::__construct();
-			$this->load->session("example_auth");
-		}
-		
-		//default method
-		public function index()
-		{
-			if(!$this->example_auth->test_authenticate())
-				die("You are not authenticated to view the page! :(");
-		}
-	}
-	```
-	
-8. Connect by using ?controller=home&method=method_name
+5. Connect by using ?controller=home&method=method_name
 
 Requirements
 ------------
 *  PHP version 5.5.1 or newer
-
-Notes
------
