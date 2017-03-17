@@ -87,8 +87,32 @@ class User extends Controller {
         if ($x > 8) {
             throw new Exception('The detention is more than 8 hrs and their parents needs to be contracted.');
         } else {
-            echo "Detention period is: " . $x . "hours";
+            
+            echo "Detention period is: " . $this->convert_minutes_to_hours($this->hourToMinutes($x)) ;
         }
     }
 
+    public function hourToMinutes($hours) { 
+            $time = EXPLODE(".", $hours); 
+            $hour = $time[0]; 
+            IF (ISSET($time[1])) { 
+                $minutes = $time[1]; 
+            } ELSE { 
+                $minutes = "00"; 
+            } 
+            $total_minutes = ($hour * 60)  +  $minutes; 
+            RETURN $total_minutes; 
+    } 
+    
+    public function convert_minutes_to_hours($mins)
+    {
+            $hours = str_pad(floor($mins /60),2,"0",STR_PAD_LEFT);
+            $mins  = str_pad($mins %60,2,"0",STR_PAD_LEFT);
+            $days = '';
+            if((int)$hours > 24){
+            $days = str_pad(floor($hours /24),2,"0",STR_PAD_LEFT);
+            $hours = str_pad($hours %24,2,"0",STR_PAD_LEFT);
+            }
+            return $hours." Hour[s] ".$mins." Min[s]";
+    }
 }

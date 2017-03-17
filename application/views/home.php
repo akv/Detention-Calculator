@@ -21,7 +21,7 @@
                 <h1><span>Detention Calculator</span> Please enter Details of User </h1>
             </header>       
             <div  class="form">
-                <form id="userDetentionForm" action="/Test/?controller=user&method=calculator"> 
+                <form id="userDetentionForm" action="<?=BASE_URL;?>?controller=user&method=calculator"> 
                     <p class="contact"><label for="name">Name</label></p> 
                     <input id="name" name="name" placeholder="Name of the student" required="" tabindex="1" type="text"> 
 

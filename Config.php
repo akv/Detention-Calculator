@@ -2,7 +2,7 @@
 
 define('BASE_PATH', dirname(__FILE__));
 define('SYSTAM_PATH', 'core');
-
+define('BASE_URL', 'http://localhost/Test/');
 //Debug option
 define('DEBUG_ON', true);
 
