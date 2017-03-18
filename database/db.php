@@ -49,5 +49,8 @@ class DB
         public function getlastrow(){
             echo $this->mysqli->insert_id;
         }
+       public function escape($value) {
+		return $this->mysqli->real_escape_string($value);
+	}
 
 }
